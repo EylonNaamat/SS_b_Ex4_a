@@ -3,24 +3,14 @@
 //
 
 #include "Player.hpp"
-#include "Game.hpp"
 #include <string>
 
 namespace coup{
     class Ambassador : Player{
-    private:
-        coup::Player player;
     public:
-        Ambassador(coup::Game &game, std::string name){
-            game.players.push_back(this);
-            Player{name};
-
-        };
+        Ambassador(coup::Game& game, std::string name) : Player(game, name){};
         ~Ambassador(){};
-        bool income();
-        bool foreign_aid();
-        bool coup();
-        std::string role();
-        int coins();
+        void transfer(Player& player_a, Player& player_b);
+        void block(Player& player);
     };
 }

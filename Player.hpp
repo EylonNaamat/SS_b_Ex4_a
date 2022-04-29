@@ -3,24 +3,30 @@
 //
 #include <string>
 #include "Game.hpp"
+#include once
 namespace coup{
     class Player{
-    protected:
-        int state;
-        std::string name;
-        bool turn;
     public:
-        Player(std::string name){
-            this->int state = 0;
+        std::string name;
+        coup::Game* game;
+        int num_coins;
+        Player* stole_from;
+        std::string eliminated_player;
+        std::string last_operation;
+    public:
+        Player(coup::Game& game, std::string name){
             this->name = name;
-            this->turn = false;
-
+            this->game = &game;
+            this->num_coins = 0;
+            this->eliminated_player = "";
+            this->stole_from = NULL;
+            this->last_operation = "";
         }
         virtual bool income();
         virtual bool foreign_aid();
-        virtual bool coup();
+        virtual void coup(Player& player);
         virtual std::string role();
         virtual int coins();
-
+        virtual bool is_blocked();
     };
 }

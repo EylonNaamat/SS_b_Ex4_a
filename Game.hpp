@@ -2,19 +2,21 @@
 // Created by eylon on 4/26/22.
 //
 #include <vector>
-#include "Player.hpp"
 #include <string>
 
 namespace coup{
     class Game{
     public:
-        std::vector<Player> players;
+        std::vector<string> players;
         int turn;
     public:
-        Game(){};
+        Game(){
+            this->turn = 0;
+        }
         ~Game(){};
         std::string turn();
         std::vector players();
         std::string winner();
+        void whose_turn();
     };
 }

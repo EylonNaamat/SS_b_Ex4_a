@@ -3,20 +3,13 @@
 //
 
 #include "Player.hpp"
-#include "Game.hpp"
 #include <string>
 
 namespace coup{
     class Assassin : Player{
-    private:
-
     public:
-        Assassin(){};
+        Assassin(coup::Game& game, std::string name): Player(gamem, name){};
         ~Assassin(){};
-        bool income();
-        bool foreign_aid();
-        bool coup();
-        std::string role();
-        int coins();
+        void coup(Player& player);
     };
 }

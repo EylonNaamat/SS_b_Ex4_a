@@ -3,20 +3,14 @@
 //
 
 #include "Player.hpp"
-#include "Game.hpp"
 #include <string>
 
 namespace coup{
     class Duke : Player{
-    private:
-
     public:
-        Duke(){};
+        Duke(coup::Game& game, std::string name): Player(game, name){};
         ~Duke(){};
-        bool income();
-        bool foreign_aid();
-        bool coup();
-        std::string role();
-        int coins();
+        void tax();
+        void block(Player& player);
     };
 }
