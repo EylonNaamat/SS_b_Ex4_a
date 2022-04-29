@@ -3,14 +3,15 @@
 //
 
 #include "Duke.hpp"
+#include <stdexcept>
 
 namespace coup{
     void Duke::tax(){
         if(this->game->turn() != this->name){
-            throw std::bad_exception("it is not your turn!!!");
+            throw std::invalid_argument("it is not your turn!!!");
         }
         if(this->num_coins >= 10){
-            throw std::bad_exception("must coup!!!");
+            throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 3;
         this->last_operation = "tax";
@@ -18,7 +19,7 @@ namespace coup{
     }
     void Duke::block(Player& player){
         if(player.last_operation != "foreign_aid"){
-            throw std::bad_exception("cant block this operation!!!");
+            throw std::invalid_argument("cant block this operation!!!");
         }
         player.num_coins -= 2;
         this->last_operation = "block";

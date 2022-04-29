@@ -6,56 +6,51 @@
 #include <stdexcept>
 
 namespace coup{
-    bool Player::income(){
+    void Player::income(){
         if(this->game->turn() != this->name){
-            throw std::bad_exception("it is not your turn!!!");
+            throw std::invalid_argument("it is not your turn!!!");
         }
         if(this->num_coins >= 10){
-            throw std::bad_exception("must coup!!!");
+            throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 1;
         this->last_operation = "income";
         this->game->whose_turn();
-        return true;
     }
-    bool Player::foreign_aid(){
-        if(this->is_blocked()){
-            return false;
-        }
+    void Player::foreign_aid(){
         if(this->game->turn() != this->name){
-            throw std::bad_exception("it is not your turn!!!");
+            throw std::invalid_argument("it is not your turn!!!");
         }
         if(this->num_coins >= 10){
-            throw std::bad_exception("must coup!!!");
+            throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 2;
         this->last_operation = "foreign_aid";
         this->game->whose_turn();
-        return true;
     }
     std::string Player::role(){
         return "Player";
     }
     void Player::coup(Player& player){
         if(this->game->turn() != this->name){
-            throw std::bad_exception("it is not your turn!!!");
+            throw std::invalid_argument("it is not your turn!!!");
         }
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
         if(this->num_coins < 7){
-            throw std::bad_exception("you dont have enough money!!!");
+            throw std::invalid_argument("you dont have enough money!!!");
         }
         bool flag_eliminated = true;
-        for(int i = 0; i < this->game->players.size(); ++i){
-            if(this->game->players[i] == player.name){
-                this->game->players[i] = "_" + player.name;
+        for(int i = 0; i < this->game->curr_players[(uint)(i)].size(); ++i){
+            if(this->game->curr_players[(uint)(i)] == player.name){
+                this->game->curr_players[(uint)(i)].insert(0,"_");
                 flag_eliminated = false;
                 break;
             }
         }
         if(flag_eliminated){
-            throw std::bad_exception("player already eliminated!!!");
+            throw std::invalid_argument("player already eliminated!!!");
         }
         this->game->whose_turn();
         this->last_operation = "coup";
@@ -63,12 +58,5 @@ namespace coup{
     }
     int Player::coins(){
         return this->num_coins;
-    }
-
-    bool Player::is_blocked(){
-        if(this->game->blocked == this->name)){
-            return true;
-        }
-        return false;
     }
 }

@@ -4,9 +4,10 @@
 
 #include "Player.hpp"
 #include <string>
+#pragma once
 
 namespace coup{
-    class Duke : Player{
+    class Duke : public Player{
     public:
         Duke(coup::Game& game, std::string name): Player(game, name){};
         ~Duke(){};

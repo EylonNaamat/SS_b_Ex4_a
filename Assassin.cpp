@@ -2,30 +2,32 @@
 // Created by eylon on 4/26/22.
 //
 #include "Assassin.hpp"
-
+#include <stdexcept>
+#include <iostream>
 namespace coup{
 
     void Assassin::coup(Player& player){
         if(this->game->turn() != this->name){
-            throw std::bad_exception("it is not your turn!!!");
+            throw std::invalid_argument("it is not your turn!!!");
         }
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
         if(this->num_coins < 3){
-            throw std::bad_exception("dont have enough coins to coup!!!");
+            throw std::invalid_argument("dont have enough coins to coup!!!");
         }
         bool flag_eliminated = true;
-        for(int i = 0; i < this->game->players.size(); ++i){
-            if(this->game->players[i] == player.name){
+        for(int i = 0; i < this->game->curr_players.size(); ++i){
+            if(this->game->curr_players[(uint)(i)] == player.name){
                 this->eliminated_player = player.name;
-                this->game->players[i].insert(0,"_");
+                std::cout << "check " << this->eliminated_player << std::endl;
+                this->game->curr_players[(uint)(i)].insert(0,"_");
                 flag_eliminated = false;
                 break;
             }
         }
         if(flag_eliminated){
-            throw std::bad_exception("player already eliminated!!!");
+            throw std::invalid_argument("player already eliminated!!!");
         }
         this->game->whose_turn();
         if(this->num_coins >= 7){

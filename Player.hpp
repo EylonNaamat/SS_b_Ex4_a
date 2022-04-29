@@ -3,7 +3,7 @@
 //
 #include <string>
 #include "Game.hpp"
-#include once
+#pragma once
 namespace coup{
     class Player{
     public:
@@ -17,16 +17,16 @@ namespace coup{
         Player(coup::Game& game, std::string name){
             this->name = name;
             this->game = &game;
+            this->game->curr_players.push_back(name);
             this->num_coins = 0;
             this->eliminated_player = "";
             this->stole_from = NULL;
             this->last_operation = "";
         }
-        virtual bool income();
-        virtual bool foreign_aid();
+        virtual void income();
+        virtual void foreign_aid();
         virtual void coup(Player& player);
         virtual std::string role();
         virtual int coins();
-        virtual bool is_blocked();
     };
 }

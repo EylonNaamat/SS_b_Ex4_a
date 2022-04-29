@@ -3,19 +3,19 @@
 //
 #include <vector>
 #include <string>
-
+#pragma once
 namespace coup{
     class Game{
     public:
-        std::vector<string> players;
-        int turn;
+        std::vector<std::string> curr_players;
+        int player_turn;
     public:
         Game(){
-            this->turn = 0;
+            this->player_turn = 0;
         }
         ~Game(){};
         std::string turn();
-        std::vector players();
+        std::vector<std::string> players();
         std::string winner();
         void whose_turn();
     };
