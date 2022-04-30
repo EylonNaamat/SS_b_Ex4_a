@@ -13,6 +13,9 @@ namespace coup{
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
+        if(!is_in_the_game(player)){
+            throw std::invalid_argument("the player not in the game!!!");
+        }
         if(this->num_coins < coup::Assassin::assassin_coup_coins){
             throw std::invalid_argument("dont have enough coins to coup!!!");
         }
@@ -20,7 +23,7 @@ namespace coup{
         for(int i = 0; i < this->game->curr_players.size(); ++i){
             if(this->game->curr_players[(uint)(i)] == player.name){
                 this->eliminated_player = player.name;
-                std::cout << "check " << this->eliminated_player << std::endl;
+//                std::cout << "check " << this->eliminated_player << std::endl;
                 this->game->curr_players[(uint)(i)].insert(0,"_");
                 flag_eliminated = false;
                 break;
@@ -37,5 +40,9 @@ namespace coup{
             this->num_coins -= coup::Assassin::assassin_coup_coins;
             this->last_operation = "assassin_coup";
         }
+    }
+
+    std::string Assassin::role(){
+        return "Assassin";
     }
 }

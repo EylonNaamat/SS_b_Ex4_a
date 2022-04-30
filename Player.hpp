@@ -25,10 +25,12 @@ namespace coup{
             this->stole_from = NULL;
             this->last_operation = "";
         }
-        virtual void income();
-        virtual void foreign_aid();
+        void income();
+        void foreign_aid();
         virtual void coup(Player& player);
         virtual std::string role();
-        virtual int coins();
+        int coins() const;
+        bool is_in_the_game(Player& player) const;
+
     };
 }

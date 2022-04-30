@@ -13,5 +13,6 @@ namespace coup{
         ~Duke(){};
         void tax();
         void block(Player& player);
+        std::string role();
     };
 }

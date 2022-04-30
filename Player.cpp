@@ -31,12 +31,16 @@ namespace coup{
     std::string Player::role(){
         return "Player";
     }
+
     void Player::coup(Player& player){
         if(this->game->turn() != this->name){
             throw std::invalid_argument("it is not your turn!!!");
         }
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
+        }
+        if(!is_in_the_game(player)){
+            throw std::invalid_argument("the player not in the game!!!");
         }
         if(this->num_coins < coup::Player::coup_coins){
             throw std::invalid_argument("you dont have enough money!!!");
@@ -56,7 +60,18 @@ namespace coup{
         this->last_operation = "coup";
         this->num_coins -= coup::Player::coup_coins;
     }
-    int Player::coins(){
+
+    int Player::coins() const{
         return this->num_coins;
+    }
+
+    bool Player::is_in_the_game(Player& player) const{
+        bool is_in = false;
+        for(int i = 0; i < this->game->curr_players.size(); ++i){
+            if(this->game->curr_players[(uint)(i)] == player.name){
+                is_in = true;
+            }
+        }
+        return is_in;
     }
 }

@@ -14,5 +14,6 @@ namespace coup{
         Assassin(coup::Game& game, std::string name): Player(game, name){};
         ~Assassin(){};
         void coup(Player& player);
+        std::string role();
     };
 }

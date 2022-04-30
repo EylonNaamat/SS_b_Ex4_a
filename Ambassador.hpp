@@ -13,5 +13,6 @@ namespace coup{
         ~Ambassador(){};
         void transfer(Player& player_a, Player& player_b);
         void block(Player& player);
+        std::string role();
     };
 }

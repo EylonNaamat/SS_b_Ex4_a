@@ -14,12 +14,16 @@ namespace coup{
         if(this->game != player_a.game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
+        if(!is_in_the_game(player_a) || !is_in_the_game(player_b)){
+            throw std::invalid_argument("at least one of the players not in the game");
+        }
         if(this->num_coins >= coup::Ambassador::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         if(player_a.num_coins < 1){
             throw std::invalid_argument("player a dont have enough money!!!");
         }
+
         player_a.num_coins -= 1;
         player_b.num_coins += 1;
         this->last_operation = "transfer";
@@ -33,8 +37,15 @@ namespace coup{
         if(player.last_operation != "steal"){
             throw std::invalid_argument("cant block this operation!!!");
         }
+        if(!is_in_the_game(player)){
+            throw std::invalid_argument("the player not in the game!!!");
+        }
         player.num_coins -= 2;
         player.stole_from->num_coins += 2;
         this->last_operation = "block";
+    }
+
+    std::string Ambassador::role(){
+        return "Ambassador";
     }
 }

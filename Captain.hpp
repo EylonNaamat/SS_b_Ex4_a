@@ -13,5 +13,6 @@ namespace coup{
         ~Captain(){};
         void steal(Player& player);
         void block(Player& player);
+        std::string role();
     };
 }

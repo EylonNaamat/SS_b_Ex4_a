@@ -18,10 +18,20 @@ namespace coup{
         this->game->whose_turn();
     }
     void Duke::block(Player& player){
+        if(player.game != this->game){
+            throw std::invalid_argument("the players arent in the same game!!!");
+        }
+        if(!is_in_the_game(player)){
+            throw std::invalid_argument("the player not in the game!!!");
+        }
         if(player.last_operation != "foreign_aid"){
             throw std::invalid_argument("cant block this operation!!!");
         }
         player.num_coins -= 2;
         this->last_operation = "block";
+    }
+
+    std::string Duke::role(){
+        return "Duke";
     }
 }

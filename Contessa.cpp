@@ -9,6 +9,9 @@ namespace coup{
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
+        if(!is_in_the_game(player)){
+            throw std::invalid_argument("the player not in the game!!!");
+        }
         if(player.last_operation != "assassin_coup"){
             throw std::invalid_argument("cant block this operation!!!");
         }
@@ -28,5 +31,9 @@ namespace coup{
         if(!flag_worked){
             throw std::invalid_argument("the eliminated player already back in the game!!!");
         }
+    }
+
+    std::string Contessa::role(){
+        return "Contessa";
     }
 }

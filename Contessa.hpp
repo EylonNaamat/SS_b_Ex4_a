@@ -12,5 +12,6 @@ namespace coup{
         Contessa(coup::Game& game, std::string name): Player(game, name){};
         ~Contessa(){};
         void block(Player& player);
+        std::string role();
     };
 }
