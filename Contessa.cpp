@@ -15,6 +15,9 @@ namespace coup{
         if(player.last_operation != "assassin_coup"){
             throw std::invalid_argument("cant block this operation!!!");
         }
+        if(this->game->turn() == player.name){
+            throw std::invalid_argument("cant block him its his turn!!!");
+        }
         bool flag_worked = false;
 //        std::cout << this->game->curr_players.size() << std::endl;
         for(int i = 0; i < this->game->curr_players.size(); ++i){

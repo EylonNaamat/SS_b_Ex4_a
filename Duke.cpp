@@ -27,6 +27,9 @@ namespace coup{
         if(player.last_operation != "foreign_aid"){
             throw std::invalid_argument("cant block this operation!!!");
         }
+        if(this->game->turn() == player.name){
+            throw std::invalid_argument("cant block him its his turn!!!");
+        }
         player.num_coins -= 2;
         this->last_operation = "block";
     }

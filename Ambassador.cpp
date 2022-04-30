@@ -40,6 +40,9 @@ namespace coup{
         if(!is_in_the_game(player)){
             throw std::invalid_argument("the player not in the game!!!");
         }
+        if(this->game->turn() == player.name){
+            throw std::invalid_argument("cant block him its his turn!!!");
+        }
         player.num_coins -= 2;
         player.stole_from->num_coins += 2;
         this->last_operation = "block";
