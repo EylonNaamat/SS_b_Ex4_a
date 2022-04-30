@@ -9,6 +9,8 @@
 namespace coup{
     class Assassin : public Player{
     public:
+        const static int assassin_coup_coins = 3;
+    public:
         Assassin(coup::Game& game, std::string name): Player(game, name){};
         ~Assassin(){};
         void coup(Player& player);

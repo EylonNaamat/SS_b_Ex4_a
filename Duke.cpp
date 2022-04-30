@@ -10,7 +10,7 @@ namespace coup{
         if(this->game->turn() != this->name){
             throw std::invalid_argument("it is not your turn!!!");
         }
-        if(this->num_coins >= 10){
+        if(this->num_coins >= coup::Duke::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 3;

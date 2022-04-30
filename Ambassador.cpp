@@ -14,7 +14,7 @@ namespace coup{
         if(this->game != player_a.game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
-        if(this->num_coins >= 10){
+        if(this->num_coins >= coup::Ambassador::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         if(player_a.num_coins < 1){

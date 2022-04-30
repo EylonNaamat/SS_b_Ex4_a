@@ -10,7 +10,7 @@ namespace coup{
         if(this->game->turn() != this->name){
             throw std::invalid_argument("it is not your turn!!!");
         }
-        if(this->num_coins >= 10){
+        if(this->num_coins >= coup::Player::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 1;
@@ -21,7 +21,7 @@ namespace coup{
         if(this->game->turn() != this->name){
             throw std::invalid_argument("it is not your turn!!!");
         }
-        if(this->num_coins >= 10){
+        if(this->num_coins >= coup::Player::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 2;
@@ -38,7 +38,7 @@ namespace coup{
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
-        if(this->num_coins < 7){
+        if(this->num_coins < coup::Player::coup_coins){
             throw std::invalid_argument("you dont have enough money!!!");
         }
         bool flag_eliminated = true;
@@ -54,7 +54,7 @@ namespace coup{
         }
         this->game->whose_turn();
         this->last_operation = "coup";
-        this->num_coins -= 7;
+        this->num_coins -= coup::Player::coup_coins;
     }
     int Player::coins(){
         return this->num_coins;

@@ -14,7 +14,7 @@ namespace coup{
         if(player.num_coins < 2){
             throw std::invalid_argument("player doesnt have enough coins!!!");
         }
-        if(this->num_coins >= 10){
+        if(this->num_coins >= coup::Captain::max_coins){
             throw std::invalid_argument("must coup!!!");
         }
         this->num_coins += 2;

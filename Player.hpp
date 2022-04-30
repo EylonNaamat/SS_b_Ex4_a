@@ -13,6 +13,8 @@ namespace coup{
         Player* stole_from;
         std::string eliminated_player;
         std::string last_operation;
+        const static int max_coins = 10;
+        const static int coup_coins = 7;
     public:
         Player(coup::Game& game, std::string name){
             this->name = name;

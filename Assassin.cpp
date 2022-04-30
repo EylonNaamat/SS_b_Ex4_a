@@ -13,7 +13,7 @@ namespace coup{
         if(player.game != this->game){
             throw std::invalid_argument("the players arent in the same game!!!");
         }
-        if(this->num_coins < 3){
+        if(this->num_coins < coup::Assassin::assassin_coup_coins){
             throw std::invalid_argument("dont have enough coins to coup!!!");
         }
         bool flag_eliminated = true;
@@ -30,11 +30,11 @@ namespace coup{
             throw std::invalid_argument("player already eliminated!!!");
         }
         this->game->whose_turn();
-        if(this->num_coins >= 7){
-            this->num_coins -= 7;
+        if(this->num_coins >= coup::Assassin::coup_coins){
+            this->num_coins -= coup::Assassin::coup_coins;
             this->last_operation = "coup";
         }else{
-            this->num_coins -= 3;
+            this->num_coins -= coup::Assassin::assassin_coup_coins;
             this->last_operation = "assassin_coup";
         }
     }
